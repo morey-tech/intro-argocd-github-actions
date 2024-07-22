@@ -1,0 +1,20 @@
+apiVersion: argoproj.io/v1alpha1
+kind: Application
+metadata:
+  name: guestbook-prd
+  namespace: argocd
+spec:
+  project: default
+  source:
+    repoURL: 'https://github.com/<repo>'
+    path: guestbook
+    targetRevision: HEAD
+    helm:
+      valueFiles:
+        - values-prd.yaml
+  destination:
+    namespace: guestbook-prd
+    name: dev
+  syncPolicy:
+    syncOptions:
+      - CreateNamespace=true
