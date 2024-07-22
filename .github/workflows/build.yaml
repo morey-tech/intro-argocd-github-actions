@@ -1,5 +1,4 @@
-name: CI/CD
-
+name: Build
 on:
   push:
     branches:
@@ -35,10 +34,15 @@ jobs:
         uses: ASzc/change-string-case-action@v5
         with:
           string: ${{ github.repository }}
+
+      - uses: benjlevesque/short-sha@v3.0
+        id: short-sha
+        with:
+          length: 7
       
       - name: Build and push
         uses: docker/build-push-action@v4
         with:
           push: true
           platforms: linux/amd64,linux/arm64
-          tags: ghcr.io/${{ steps.repo-lower.outputs.lowercase }}:${{ github.sha }}, ghcr.io/${{ steps.repo-lower.outputs.lowercase }}:latest
+          tags: ghcr.io/${{ steps.repo-lower.outputs.lowercase }}:${{ steps.short-sha.outputs.sha }}, ghcr.io/${{ steps.repo-lower.outputs.lowercase }}:latest
