@@ -5,8 +5,8 @@
 replicaCount: 1
 
 image:
-  repository: quay.io/akuity/argo-cd-learning-assets/guestbook
-  tag: 0.1.0
+  repository: ghcr.io/morey-tech/intro-argocd-github-actions
+  tag: latest
   pullPolicy: IfNotPresent
 
 service:
