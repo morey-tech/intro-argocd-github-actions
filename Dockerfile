@@ -1,1 +1,1 @@
-FROM gcr.io/heptio-images/ks-guestbook-demo:0.1
+FROM quay.io/akuity/argo-cd-learning-assets/guestbook:0.1.0
